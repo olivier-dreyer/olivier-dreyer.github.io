@@ -1,0 +1,15 @@
+# Development-only output, not part of the public site.
+.review/
+
+# Local preview artefacts
+*.log
+*.tmp
+*.bak
+*.orig
+
+# OS / editor noise
+Thumbs.db
+.DS_Store
+desktop.ini
+.vscode/
+.idea/

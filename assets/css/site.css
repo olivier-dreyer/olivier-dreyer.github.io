@@ -1,0 +1,965 @@
+/* ==========================================================================
+   Olivier Dreyer — professional site
+   Static CSS only. System fonts, no external resources, no animation.
+   ========================================================================== */
+
+:root {
+  --paper: #fbfaf8;
+  --paper-soft: #f4f2ee;
+  --ink: #1b2432;
+  --ink-soft: #4d5768;
+  /* Darkened from #6f7887 to clear WCAG AA (4.5:1) against --paper.
+     It carries small body text: disclosures, counts and quiet annotations. */
+  --ink-faint: #646c7a;
+  --line: #e3dfd8;
+  --line-strong: #cfc9bf;
+
+  --blue: #2f5d8f;
+  --blue-soft: #eaf0f7;
+  --green: #2f6b52;
+  --warm: #8a5a33;
+
+  --focus: #1b2432;
+  --shell: 1120px;
+  --gutter: 40px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Accessibility helpers --------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 18px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ---------- Root page ---------------------------------------------------- */
+
+/* Root page. The h1 carries the name; the role line sits beneath it. */
+.identity-name {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.identity-role {
+  margin: 0.6rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.intro-line {
+  margin: 2.4rem 0 0;
+  max-width: 34ch;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.page {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 18vh var(--gutter) 12vh;
+}
+
+.case-link-block {
+  margin-top: 5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+  max-width: 46ch;
+}
+
+.case-link-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.case-link-note {
+  margin: 0.9rem 0 0;
+  color: var(--ink-soft);
+}
+
+.case-link-action { margin: 1.8rem 0 0; }
+
+.button-link {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 0.98rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.button-link:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ---------- 404 ------------------------------------------------------------ */
+
+.notfound {
+  max-width: 44ch;
+}
+
+.notfound-heading {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.notfound-text {
+  margin: 1rem 0 0;
+  color: var(--ink-soft);
+}
+
+.notfound-action { margin: 2.2rem 0 0; }
+
+/* ---------- Compass: masthead ------------------------------------------- */
+
+.masthead { padding: 2.3rem 0 0; }
+
+.masthead-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.masthead-role {
+  margin: 0.55rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Compass: hero ------------------------------------------------ */
+
+.hero {
+  padding: 3rem 0 3rem;
+  border-bottom: 1px solid var(--line);
+  max-width: 60rem;
+}
+
+.hero-heading {
+  margin: 0;
+  font-size: clamp(2.05rem, 4.6vw, 3.35rem);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.hero-heading-line { display: block; }
+
+.hero-intro {
+  margin: 1.5rem 0 0;
+  max-width: 44ch;
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.hero-credential {
+  margin: 1.15rem 0 0;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+
+/* ---------- Section headings -------------------------------------------- */
+
+.section-heading {
+  margin: 0 0 1.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Operating model --------------------------------------------- */
+
+.model { padding: 2.8rem 0 0; }
+
+.flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: start;
+  gap: 0 1.4rem;
+}
+
+.flow-stage {
+  border-top: 2px solid var(--line-strong);
+  padding-top: 1.6rem;
+}
+
+.flow-stage[data-tone="evidence"] { border-top-color: var(--blue); }
+.flow-stage[data-tone="action"]    { border-top-color: var(--green); }
+.flow-stage[data-tone="human"]     { border-top-color: var(--warm); }
+
+.flow-icon {
+  display: block;
+  height: 30px;
+  color: var(--ink-soft);
+}
+
+.flow-stage[data-tone="evidence"] .flow-icon,
+.flow-stage[data-tone="ai"] .flow-icon { color: var(--blue); }
+.flow-stage[data-tone="human"] .flow-icon { color: var(--warm); }
+.flow-stage[data-tone="action"] .flow-icon { color: var(--green); }
+
+.flow-arrow {
+  align-self: start;
+  padding-top: 1.72rem;
+  color: var(--line-strong);
+  display: flex;
+}
+
+.flow-name {
+  margin: 0.9rem 0 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.flow-text {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 22ch;
+}
+
+.model-note {
+  margin: 2.6rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+/* ---------- Proof signals ----------------------------------------------- */
+
+.proof { padding: 4.6rem 0 0; }
+
+.proof-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 2.6rem;
+}
+
+/* Fine rule per column, not a card. Evidence, not features. */
+.proof-item {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.2rem;
+}
+
+.proof-name {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.proof-text {
+  margin: 0.55rem 0 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+
+/* ---------- Governance callout ------------------------------------------ */
+
+/* First substantial block after the operating model: concrete evidence,
+   ahead of the abstract summary. */
+.governance { padding: 4.2rem 0 0; }
+
+/* Executive callout: quiet blue-tinted panel with a fine left rule.
+   Deliberately not styled as an alert, warning or error state. */
+.governance-quote {
+  margin: 0;
+  padding: 1.9rem 2.1rem;
+  background: var(--blue-soft);
+  border-left: 2px solid var(--blue);
+  border-radius: 0 3px 3px 0;
+  max-width: 58rem;
+}
+
+.governance-quote p {
+  margin: 0;
+  font-size: 1.16rem;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.governance-note {
+  margin: 1.1rem 0 0;
+  padding-left: 2.2rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* ---------- CTA ------------------------------------------------------------ */
+
+/* Quiet finish to the sequence. No heading, no button. */
+.cta { padding: 4rem 0 0; }
+
+.cta-action { margin: 0; }
+
+/* Understated invitation to read on. Not a product call to action. */
+.text-link {
+  color: var(--ink);
+  font-size: 1.06rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.text-link:hover {
+  text-decoration-color: var(--ink);
+}
+
+.text-link:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+/* ---------- Case study: shared ------------------------------------------- */
+
+.case-study {
+  margin: 5rem 0 0;
+  padding-top: 3.4rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 2rem;
+}
+
+.case-intro { max-width: 60ch; }
+
+.case-intro .section-heading { margin-bottom: 1.4rem; }
+
+.case-intro-text {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.story { padding: 5.5rem 0 0; }
+
+.story-intro {
+  margin: 0 0 3rem;
+  max-width: 66ch;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.story-closing {
+  margin: 3rem 0 0;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--line);
+  max-width: 60ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Small, quiet provenance note. Deliberately understated. */
+.disclosure {
+  margin: 1.6rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 56ch;
+}
+
+.caveat {
+  margin: 3rem 0 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--line-strong);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+/* ---------- Story 1: four-stage journey ---------------------------------- */
+
+.journey {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 1.9rem;
+}
+
+.journey-stage {
+  border-top: 2px solid var(--line-strong);
+  padding-top: 1.3rem;
+}
+
+.journey-stage[data-tone="system"]   { border-top-color: var(--line-strong); }
+.journey-stage[data-tone="ai"]       { border-top-color: var(--blue); }
+.journey-stage[data-tone="human"]    { border-top-color: var(--warm); }
+.journey-stage[data-tone="governed"] { border-top-color: var(--green); }
+
+.journey-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.journey-stage[data-tone="ai"] .journey-name       { color: var(--blue); }
+.journey-stage[data-tone="human"] .journey-name    { color: var(--warm); }
+.journey-stage[data-tone="governed"] .journey-name { color: var(--green); }
+
+.journey-status {
+  margin: 0.7rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* Status chip for the policy-validation note. Outline only, no fill. */
+.journey-status-tag {
+  display: inline-block;
+  margin-top: 0.45rem;
+  padding: 2px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.journey-text {
+  margin: 0.8rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+/* ---------- Story 2: simplified process representation --------------------- */
+
+.process {
+  padding: 2rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.process-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* Nodes are text-only. No window chrome, no dashboard styling. */
+.node {
+  display: inline-block;
+  padding: 0.62rem 1.05rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: transparent;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink);
+}
+
+.node-system   { border-color: var(--line-strong); }
+.node-ai       { border-color: var(--blue); color: var(--blue); }
+.node-human    { border-color: var(--warm); color: var(--warm); }
+.node-recorded { border-color: var(--green); color: var(--green); }
+
+/* Connector: a short rule with an arrowhead. Decorative only. */
+.link-arrow {
+  position: relative;
+  display: inline-block;
+  width: 2.1rem;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.link-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -3px;
+  border-left: 6px solid var(--line-strong);
+  border-top: 3.5px solid transparent;
+  border-bottom: 3.5px solid transparent;
+}
+
+/* Escalation loop, kept as a quiet labelled annotation rather than a drawn arc. */
+.process-loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.loop-glyph {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--blue);
+}
+
+/* Vertical stem joining the proposal to its human branches. */
+.branch-stem {
+  display: block;
+  width: 1px;
+  height: 1.5rem;
+  margin: 1.6rem auto 0;
+  background: var(--line-strong);
+}
+
+/* Outcomes. Accepted and edited+accepted converge on Recorded; rejection
+   terminates separately. Three equal columns keep every node centred beneath
+   the flow above, and the merge spans only the two accepted columns. */
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 1.6rem;
+}
+
+.outcome-row {
+  grid-row: 1;
+  text-align: center;
+}
+
+/* Convergence: legs drop from each accepted node onto a shared rule, which
+   then drops once to Recorded. Legs sit on each node's centre line. */
+.outcome-merge {
+  position: relative;
+  grid-column: 1 / 3;
+  grid-row: 2;
+  height: 2.4rem;
+  margin-top: 1.1rem;
+}
+
+.merge-leg {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1.2rem;
+  background: var(--line-strong);
+}
+
+.merge-leg:first-child { left: calc((100% - 1.6rem) / 4); }
+.merge-leg:last-child  { right: calc((100% - 1.6rem) / 4); }
+
+.outcome-merge::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: calc((100% - 1.6rem) / 4);
+  right: calc((100% - 1.6rem) / 4);
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.outcome-merge::after {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: 50%;
+  width: 1px;
+  height: 1.2rem;
+  background: var(--line-strong);
+}
+
+.outcome-result {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  text-align: center;
+}
+
+/* Termination: the rejected path stops at a bar in the third column rather
+   than joining the recorded state. It occupies the same rows as the merge so
+   it does not stretch row 1 and displace the accepted nodes. */
+.outcome-end {
+  grid-column: 3;
+  grid-row: 2 / 4;
+  position: relative;
+  padding-top: 1.1rem;
+}
+
+.outcome-stop {
+  position: absolute;
+  top: 1.1rem;
+  left: 50%;
+  width: 1px;
+  height: 1.3rem;
+  background: var(--line-strong);
+}
+
+.outcome-stop::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2.6rem;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--line-strong);
+}
+
+.outcome-end::after {
+  content: "Path ends";
+  position: absolute;
+  top: 2.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: var(--ink-faint);
+}
+
+/* Per-item consequence text is a mobile affordance; the desktop merge and
+   terminator already carry it. */
+.outcome-effect,
+.outcome-arrow {
+  display: none;
+}
+
+/* Counts stay subordinate: one quiet line, not KPI cards. */
+.process-counts {
+  margin: 1.8rem 0 0;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ---------- Story 2: insights --------------------------------------------- */
+
+.insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  margin-top: 4rem;
+}
+
+.insight {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.2rem;
+}
+
+.insight-name {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.insight-text {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 32ch;
+}
+
+/* ---------- Footer ------------------------------------------------------ */
+
+.site-footer {
+  margin-top: 7rem;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.site-footer-inner {
+  padding-top: 2.6rem;
+  padding-bottom: 3.2rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+
+.site-footer p:last-child { margin-bottom: 0; }
+/* ---------- Responsive --------------------------------------------------- */
+
+@media (max-width: 900px) {
+  :root { --gutter: 32px; }
+
+  /* Preserve the established mobile rhythm; the pacing gain is desktop-only. */
+  .hero-intro { margin-top: 2rem; }
+
+  .hero-credential { margin-top: 1.5rem; }
+
+  .section-heading { margin-bottom: 2.2rem; }
+
+  .flow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .flow-stage {
+    border-top: 0;
+    border-left: 2px solid var(--line-strong);
+    padding: 0 0 0 1.4rem;
+  }
+
+  .flow-stage[data-tone="evidence"] { border-left-color: var(--blue); }
+  .flow-stage[data-tone="human"]     { border-left-color: var(--warm); }
+  .flow-stage[data-tone="action"]    { border-left-color: var(--green); }
+
+  .flow-icon { height: 26px; }
+
+  .flow-text { max-width: 34ch; }
+
+  .flow-arrow {
+    padding: 0.7rem 0 0.7rem 1.4rem;
+    transform: rotate(90deg);
+    transform-origin: left center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .proof-list {
+    grid-template-columns: 1fr;
+    gap: 1.9rem;
+  }
+
+  .proof-text { max-width: 44ch; }
+
+  /* ---------- Phase 3: responsive ---------------------------------------- */
+
+  .journey {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem 1.9rem;
+  }
+
+  .journey-text { max-width: 34ch; }
+
+  .outcomes,
+  .insights {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .insight-text { max-width: 44ch; }
+
+  .story { padding-top: 4.5rem; }
+}
+
+@media (max-width: 560px) {
+  :root { --gutter: 22px; }
+
+  body { font-size: 16px; }
+
+  .masthead { padding-top: 2.2rem; }
+
+  .hero { padding: 3rem 0; }
+
+  .hero-heading { font-size: 1.95rem; }
+
+  .hero-intro { font-size: 1.05rem; }
+
+  /* Phase 1 mobile rhythm is preserved exactly. */
+  .model { padding-top: 3.4rem; }
+
+  /* Phase 2 sits slightly tighter on mobile to shorten the scroll
+     to the governance example. */
+  .governance { padding-top: 3rem; }
+
+  .proof { padding-top: 3rem; }
+
+  .cta { padding-top: 2.8rem; }
+
+  .governance-quote { padding: 1.4rem 1.3rem; }
+
+  .governance-quote p { font-size: 1.06rem; }
+
+  .governance-note { padding-left: 1.5rem; }
+
+  .journey {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .journey-stage { padding-top: 1.1rem; }
+
+  .journey-text { max-width: 42ch; }
+
+  .process { padding-top: 1.6rem; }
+
+  .process-row { gap: 0.7rem; }
+
+  .branch-stem { height: 1.2rem; margin-top: 1.2rem; }
+
+  /* Mobile: each outcome carries its own consequence on one line, so the
+     three read as parallel results rather than sequential steps. The desktop
+     convergence connector and terminator are not needed at this width. */
+  .outcomes {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .outcome-row {
+    grid-column: 1;
+    grid-row: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: left;
+  }
+
+  .outcome-row .node { flex: 1 1 auto; }
+
+  .outcome-arrow {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    width: 1.3rem;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  .outcome-arrow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    border-left: 5px solid var(--line-strong);
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+  }
+
+  .outcome-row .outcome-effect {
+    display: block;
+    flex: 0 0 auto;
+    margin-top: 0;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .outcome-row .outcome-effect[data-tone="recorded"] { color: var(--green); }
+
+  .outcome-row[data-kind="ended"] { margin-top: 0.4rem; }
+
+  .outcome-merge,
+  .outcome-end,
+  .outcome-result { display: none; }
+
+  /* Reflow the process vertically; arrows turn downward. */
+  .process-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .link-arrow {
+    width: 1px;
+    height: 1.4rem;
+    margin: 0 auto;
+    background: var(--line-strong);
+  }
+
+  .link-arrow::after {
+    right: -3.5px;
+    top: auto;
+    bottom: 0;
+    border-left: 3.5px solid transparent;
+    border-right: 3.5px solid transparent;
+    border-top: 6px solid var(--line-strong);
+    border-bottom: 0;
+  }
+
+  .story-intro { margin-bottom: 2.4rem; }
+
+  .story-closing { margin-top: 2.4rem; padding-top: 1.4rem; }
+
+  .insights { margin-top: 3.2rem; }
+
+  .caveat { margin-top: 2.4rem; }
+
+  .site-footer { margin-top: 5rem; }
+}
+
+/* ---------- Print -------------------------------------------------------- */
+
+@media print {
+  .site-footer { margin-top: 2rem; }
+}
