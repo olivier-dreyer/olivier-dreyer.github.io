@@ -1,5 +1,6 @@
 import json, html
 from pathlib import Path
+from xml.sax.saxutils import escape as xml_escape
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
@@ -17,6 +18,9 @@ with PROFILE.open(encoding="utf-8") as f:
 
 def esc(s):
     return html.escape(s, quote=True)
+
+def pdf_text(s):
+    return xml_escape(str(s))
 
 def generate_html():
     caps = "".join(f"<li>{esc(x)}</li>" for x in p["capabilities"])
@@ -39,6 +43,11 @@ def generate_html():
 <meta name="robots" content="index, follow">
 <title>{esc(p['name'])} | CV</title>
 <meta name="description" content="Evergreen executive CV for {esc(p['name'])}, Senior Strategy, Operations and Transformation Leader.">
+<link rel="canonical" href="https://olivierdreyer.com/cv/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{esc(p['name'])} | Executive CV">
+<meta property="og:description" content="Senior Strategy, Operations and Transformation leader across FinTech &amp; Payments, SaaS and HealthTech.">
+<meta property="og:url" content="https://olivierdreyer.com/cv/">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body class="cv-page">
@@ -56,6 +65,7 @@ def generate_html():
     <p class="cv-headline">{esc(p['headline'])}</p>
     <p class="cv-summary">{esc(p['positioning'])}</p>
     <p class="cv-location">{esc(p['location'])}. {esc(p['work_authorisation'])}.</p>
+    <p class="cv-contact"><a href="https://olivierdreyer.com/">olivierdreyer.com</a> &middot; <a href="{esc(p['linkedin'])}">linkedin.com/in/olivier-dreyer</a></p>
     <div class="cv-actions"><a class="button-link" href="../assets/Olivier-Dreyer-CV.pdf" download>Download PDF</a><a class="text-link" href="{esc(p['linkedin'])}">LinkedIn</a></div>
   </section>
   <section class="cv-section"><h2 class="section-heading">Career highlights</h2><ul class="cv-highlight-list">{highlights}</ul></section>
@@ -89,24 +99,31 @@ def generate_pdf():
     bullet = ParagraphStyle("Bullet", parent=body_small, leftIndent=8, firstLineIndent=-5, bulletIndent=0, spaceAfter=2.2)
 
     story=[]
-    story += [Paragraph(p['name'], h1), Paragraph(p['headline'], role), Paragraph(p['positioning'], body), Paragraph(f"{p['location']}. {p['work_authorisation']}.", body_small)]
+    contact = "olivierdreyer.com | linkedin.com/in/olivier-dreyer"
+    story += [
+        Paragraph(pdf_text(p['name']), h1),
+        Paragraph(pdf_text(p['headline']), role),
+        Paragraph(pdf_text(contact), body_small),
+        Paragraph(pdf_text(p['positioning']), body),
+        Paragraph(pdf_text(f"{p['location']}. {p['work_authorisation']}."), body_small),
+    ]
     story += [Paragraph("CAREER HIGHLIGHTS", section)]
     for x in p['highlights']:
-        story.append(Paragraph("&#8226; " + x, bullet))
-    story += [Paragraph("CORE CAPABILITIES", section), Paragraph(" | ".join(p['capabilities']), body_small)]
+        story.append(Paragraph("&#8226; " + pdf_text(x), bullet))
+    story += [Paragraph("CORE CAPABILITIES", section), Paragraph(pdf_text(" | ".join(p['capabilities'])), body_small)]
     story += [Paragraph("EXPERIENCE", section)]
     for e in p['experience']:
-        block=[Paragraph(f"{e['company']} | {e['title']}", role_title), Paragraph(f"{e['dates']} | {e['location']}", meta)]
+        block=[Paragraph(pdf_text(f"{e['company']} | {e['title']}"), role_title), Paragraph(pdf_text(f"{e['dates']} | {e['location']}"), meta)]
         for b in e['bullets']:
-            block.append(Paragraph("&#8226; " + b, bullet))
+            block.append(Paragraph("&#8226; " + pdf_text(b), bullet))
         story.append(KeepTogether(block))
         story.append(Spacer(1, 2.5))
     story += [Paragraph("EDUCATION & CREDENTIALS", section)]
     for x in p['education']:
-        story.append(Paragraph("&#8226; " + x, bullet))
+        story.append(Paragraph("&#8226; " + pdf_text(x), bullet))
     for x in p['certifications']:
         story.append(Paragraph("&#8226; " + x, bullet))
-    story += [Paragraph("LANGUAGES & AUTHORISATION", section), Paragraph(" | ".join(p['languages']) + ". " + p['work_authorisation'] + ".", body_small)]
+    story += [Paragraph("LANGUAGES & AUTHORISATION", section), Paragraph(pdf_text(" | ".join(p['languages']) + ". " + p['work_authorisation'] + "."), body_small)]
     doc.build(story)
 
 if __name__ == "__main__":
