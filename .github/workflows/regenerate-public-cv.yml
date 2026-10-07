@@ -25,7 +25,7 @@ jobs:
       - run: python scripts/generate_public_cv.py
       - name: Commit generated CV outputs
         run: |
-          if git diff --quiet -- cv/index.html assets/Olivier-Dreyer-CV.pdf; then
+          if [ -z "$(git status --porcelain -- cv/index.html assets/Olivier-Dreyer-CV.pdf)" ]; then
             echo "No generated changes"
             exit 0
           fi
