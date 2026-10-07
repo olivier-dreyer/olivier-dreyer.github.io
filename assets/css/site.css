@@ -92,6 +92,8 @@ a{color:inherit}
 .cv-headline{margin:.7rem 0 0;font-size:1.12rem;font-weight:560;color:var(--ink-soft)}
 .cv-summary{margin:1.4rem 0 0;max-width:78ch;font-size:1.04rem;line-height:1.66;color:var(--ink-soft)}
 .cv-location{margin:1rem 0 0;font-size:.9rem;color:var(--ink-faint)}
+.cv-contact{margin:.45rem 0 0;font-size:.86rem;color:var(--ink-faint)}
+.cv-contact a{text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
 .cv-actions{display:flex;align-items:center;gap:1.2rem;margin-top:1.8rem}
 .cv-section{padding-top:4rem}
 .cv-highlight-list,.cv-capability-list,.cv-role ul,.cv-bottom-grid ul{margin:0;padding-left:1.1rem;color:var(--ink-soft)}
