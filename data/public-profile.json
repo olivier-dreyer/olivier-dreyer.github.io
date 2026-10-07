@@ -4,7 +4,10 @@
   "positioning": "Senior Strategy, Operations & Transformation leader with 15+ years across FinTech & Payments, SaaS and HealthTech. Combines strategic vision with operational depth and disciplined execution to translate ambition into scalable delivery and measurable commercial outcomes. Experience spans enterprise strategy, global operations, operating-model transformation, commercialisation, post-M&A value creation, P&L ownership and practical AI-enabled transformation.",
   "location": "UK-based; open to London, UK-remote, Europe and UAE opportunities",
   "work_authorisation": "British and French citizen with UK and EU work authorisation",
-  "languages": ["English - fluent", "French - fluent"],
+  "languages": [
+    "English - fluent",
+    "French - fluent"
+  ],
   "capabilities": [
     "Strategy & Operations",
     "Transformation & Operating Models",
@@ -29,7 +32,7 @@
       "company": "Independent",
       "title": "Strategy, Operations & Transformation Projects",
       "location": "UK",
-      "dates": "Mar 2026 - Present",
+      "dates": "2026 - Present",
       "bullets": [
         "Developing and applying strategy, operating-model, decision-governance and AI-enabled workflow approaches across live internal and professional projects.",
         "Current work includes governed decision systems, evidence structures, deterministic business logic, human approval and operational workflow design, with AI used as a supporting capability rather than decision authority."
@@ -94,6 +97,8 @@
     "Post-secondary studies in Information Technology - Maestris",
     "Post-secondary studies in History & Cinema - Aix-Marseille University"
   ],
-  "certifications": ["ITIL Foundation"],
+  "certifications": [
+    "ITIL Foundation"
+  ],
   "linkedin": "https://www.linkedin.com/in/olivier-dreyer/"
 }
